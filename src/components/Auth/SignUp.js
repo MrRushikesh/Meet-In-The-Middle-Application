@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './SignUp.css';
 import Header from '../Common/Header';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {storage} from '../../firebase';
 import {ref, uploadBytes, listAll, getDownloadURL} from 'firebase/storage';
 import {v4} from 'uuid';
@@ -12,7 +12,8 @@ function SignUp() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [imageUpload, setImageUpload] = useState(null); 
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState('');
+    const navigate = useNavigate();
 
 
     const imageListRef = ref(storage, `images/`)
@@ -42,6 +43,15 @@ function SignUp() {
         })
     },[imageListRef]);
 
+
+    const handleNextButton = () => {
+        sessionStorage.setItem('imageUrl',imageUrl);
+        sessionStorage.setItem('firstName',firstName);
+        sessionStorage.setItem('lastName',lastName);
+        alert("✅ User information saved successfully...")
+        navigate('/phone')
+    }
+
     return (
         <>
         {
@@ -50,7 +60,7 @@ function SignUp() {
             (
                 <div className="flex-container-21">
                     <div><p className="prev btn btn-primary ms-2"><i className="fa-solid fa-chevron-left"></i></p></div>
-                    <div><Link to="/phone" className="next btn btn-primary me-2">NEXT</Link></div>
+                    <div><p onClick={handleNextButton} className="next btn btn-primary me-2">NEXT</p></div>
                 </div>
             )
         }
@@ -67,7 +77,7 @@ function SignUp() {
                             </div>) : 
                         ( 
                             <div className="icon">
-                                <img src={imageUrl} width="100%" height="100%" alt="icon" />
+                                <img src={imageUrl} style={{borderRadius:'50%'}} width="100%" height="100%" alt="icon" />
                             </div>
                         )
                     }

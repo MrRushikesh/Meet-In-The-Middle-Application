@@ -70,3 +70,8 @@
     text-align: center;
     font-size: 14px;
 }
+
+.error{
+    margin-top:20px;
+    color : red;
+}
