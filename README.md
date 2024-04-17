@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Meet in the Middle App Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+The Meet in the Middle app aims to facilitate the process of organizing meetings by finding a convenient location for all invitees. This documentation provides an overview of the features, tools, technologies, and workflows involved in the development and use of the app.
 
-## Available Scripts
+## Application Overview
+Meet in the Middle (version 1.0) includes the following core features:
+1. OTP-based authentication or email authentication.
+2. Creation of new meetings and sending invites via SMS.
+3. Ability for users to join meetings by tapping the link in the SMS.
+4. Retrieval of user locations upon joining the website.
+5. Finding and listing good places that are at an almost equal distance from each meeting participant.
 
-In the project directory, you can run:
+## Tools and Technologies
+- **Frontend:**
+  - HTML, CSS, and JavaScript
+  - React framework
 
-### `npm start`
+- **Backend:**
+  - Developed using Node.js
+  - Hosted on Amazon Web Services (AWS)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Storage:**
+  - Profile pictures stored in AWS S3
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Authentication:**
+  - OTP service implementation left to backend developer's discretion
 
-### `npm test`
+- **Analytics and Notifications:**
+  - Firebase's Crashlytics for app usage analytics
+  - Firebase for push notifications
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Web Flow and Screens
 
-### `npm run build`
+### Landing Screen
+- Initial screen with options to sign up or sign in using a registered mobile number.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Authentication Screens
+1. **Sign Up Screen:**
+   - User provides full name, profile picture, and mobile number.
+   - Proceed button to move to OTP Screen.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Sign In Screen:**
+   - User enters registered mobile number.
+   - Proceed button to move to OTP Screen.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **OTP Screen:**
+   - User enters OTP received via SMS.
+   - Timer for 1 minute with resend OTP option.
+   - Proceed button for successful authentication.
 
-### `npm run eject`
+### Home Screen
+- Displayed after successful authentication.
+- Features:
+  - My Meetings List
+  - Invitation List
+  - Create a New Meeting
+  - User Profile
+  - Notifications
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### My Meetings List
+- Displays upcoming meetings.
+- Details include meeting name, creator, date/time, invited/joined counts.
+- Sorted with soonest meetings first.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Invitations List
+- Displays pending meeting invitations.
+- Options to accept or decline invites.
+- Details include meeting name, creator, date/time, invited/joined counts.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Meet in the Middle Places List
+- Shows suggested meeting places based on user locations.
+- Includes place name, distance, and image.
+- Sorted by ascending distance.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Create a New Meeting
+- Form to create a new meeting with:
+  - Meeting name
+  - Description (optional)
+  - Date/time
+  - Invite contacts
+  - Starting location
 
-## Learn More
+### User Profile
+- Displays user information and options:
+  - Profile picture
+  - User name
+  - List of created meetings
+  - List of upcoming meetings
+  - List of pending invitations
+  - Disable push notifications
+  - Log out
+  - Send feedback
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Other User Profile Page
+- Details of another user on tapping their name.
+- Shows profile picture, user name, phone number, and common upcoming meetings.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Push Notifications
+- Users receive notifications for:
+  1. New meeting invites
+  2. Meeting reminders
+  3. Joining of all invitees to a meeting
+  4. Updates/deletion of meetings (except for the creator)
+  5. Reminder 2 hours before meeting
 
-### Code Splitting
+## Future Ideas 
+- Booking a ride (e.g., Uber, Ola)
+- Confirming a meeting place
+- Voting for meeting places
+- Updating phone number
+- Adding reminders to user's calendar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Conclusion
+The Meet in the Middle app provides a streamlined way for users to organize meetings at convenient locations for all participants. With features like OTP-based authentication, meeting creation, invitations, and location-based suggestions, it aims to simplify the process of scheduling and planning meetings.
