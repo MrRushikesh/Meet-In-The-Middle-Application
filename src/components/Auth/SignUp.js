@@ -35,7 +35,9 @@ function SignUp() {
 
     useEffect(() => {
         listAll(imageListRef).then((response) => {
+            // console.log(response)
            response.items.forEach((item) => {
+            // console.log(item)
                 getDownloadURL(item).then((url) => {
                     setImageUrl(url);
                 })
@@ -72,7 +74,7 @@ function SignUp() {
                     {
                         (imageUrl === "") ? 
                         (   
-                            <div className="icon">
+                            <div className="icon" >
                                 <img src="https://i.ibb.co/3YnGGYM/phone-In-Hand.pnghttps://i.ibb.co/3YnGGYM/phone-In-Hand.png" width="100%" height="100%" alt="icon" />
                             </div>) : 
                         ( 
